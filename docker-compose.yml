@@ -3,7 +3,7 @@ services:
   web:
     build:
       context: .
-    image: "hosted-cbc-backend:local"
+    image: "todos-django:local"
     command: poetry run python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./:/app
@@ -20,7 +20,7 @@ services:
 
   db:
     image: "postgres"
-    container_name: "hosted-db"
+    container_name: "todos-db"
     ports:
       - "5412:5432"
     environment:
