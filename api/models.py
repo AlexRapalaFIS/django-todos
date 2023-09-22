@@ -13,6 +13,7 @@ class Todo(models.Model):
     description = models.CharField(max_length=128)
     status = models.CharField(
         max_length=128, choices=STATUSES, default="PENDING")
+    notes = models.CharField(max_length=128, default="ADD NOTES HERE")
 
     def __str__(self):
         return self.name
