@@ -5,5 +5,15 @@ from .serializers import TodoSerializer
 
 
 class TodoViewSet(viewsets.ModelViewSet):
-    queryset = Todo.objects.all().order_by("id")
+
     serializer_class = TodoSerializer
+
+    def get_queryset(self):
+
+        user = self.request.user
+        return Todo.objects.filter(user=user)
+
+    def perform_save(self, serializer):
+        print(self.request.user)
+        print("HERE____")
+        serializer.save(user=self.request.user)
