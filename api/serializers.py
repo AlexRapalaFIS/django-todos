@@ -19,13 +19,13 @@ class TodoSerializer(serializers.ModelSerializer):
         model = Todo
         fields = ["id", "name", "description", "status", "user"]
 
-    def save(self):
+    def create(self, validated_data):
         user = self.context['request'].user
-        name = self.validated_data['name']
-        description = self.validated_data['description']
-        status = self.validated_data['status']
-        Todo.objects.create(user=user, name=name,
-                            description=description, status=status)
+        name = validated_data['name']
+        description = validated_data['description']
+        status = validated_data['status']
+        return Todo.objects.create(user=user, name=name,
+                                   description=description, status=status)
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
