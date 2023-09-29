@@ -12,8 +12,3 @@ class TodoViewSet(viewsets.ModelViewSet):
 
         user = self.request.user
         return Todo.objects.filter(user=user)
-
-    def perform_save(self, serializer):
-        print(self.request.user)
-        print("HERE____")
-        serializer.save(user=self.request.user)
